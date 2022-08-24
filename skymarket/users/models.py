@@ -56,7 +56,7 @@ class User(AbstractBaseUser):
         help_text='Укажите, активен ли аккаунт.',
     )
 
-    images = models.ImageField(
+    image = models.ImageField(
         upload_to='users_avatars/',
         verbose_name='Аватарка',
         help_text="Выбирите свой аватар.",

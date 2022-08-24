@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',  # подключаем Swagger
     'djoser',  # подключаем Djoser
     'phonenumber_field',
-    'drf_spectacular',  # подключаем Swagger
     "users",
     "ads",
     "redoc",
