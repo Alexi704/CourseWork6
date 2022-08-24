@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
-from skymarket.users.managers import UserManager
+from users.managers import UserManager
 
 
 class UserRoles:
