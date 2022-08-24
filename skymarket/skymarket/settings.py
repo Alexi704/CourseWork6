@@ -18,9 +18,6 @@ load_dotenv(dotenv_path=env_path)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "S-Key:Tuman8_LRu2@ru-vpvsd0%a*6n1s4@w+wmt*$loc_p4zw^pw6z@e8e21iwii%m3&5"
 
@@ -28,8 +25,6 @@ SECRET_KEY = "S-Key:Tuman8_LRu2@ru-vpvsd0%a*6n1s4@w+wmt*$loc_p4zw^pw6z@e8e21iwii
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
-# Application definition
 
 # здесь тоже нужно подключить Swagger и corsheaders
 INSTALLED_APPS = [
@@ -87,7 +82,6 @@ WSGI_APPLICATION = "skymarket.wsgi.application"
 REST_FRAMEWORK = {
     # подключаем Swagger
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    # подключаем Djoser
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
