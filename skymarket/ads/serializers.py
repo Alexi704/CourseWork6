@@ -1,7 +1,7 @@
 from phonenumber_field import serializerfields
 from rest_framework import serializers
 
-from skymarket.ads.models import Comment, Ad
+from ads.models import Comment, Ad
 
 
 class CommentSerializer(serializers.ModelSerializer):

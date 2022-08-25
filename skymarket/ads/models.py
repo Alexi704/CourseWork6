@@ -3,13 +3,6 @@ from django.db import models
 
 
 class Ad(models.Model):
-    image = models.ImageField(
-        upload_to='images/',
-        verbose_name='фото',
-        help_text='Разместите фото для объявления',
-        null=True,
-        blank=True,
-    )
     title = models.CharField(
         max_length=200,
         verbose_name='Название товара',
@@ -25,10 +18,9 @@ class Ad(models.Model):
         verbose_name='Автор объявления',
         help_text='Выберите автора объявления',
     )
-    created_ad = models.DateTimeField(
+    created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Время создания объявления',
-        help_text='Введите время создания объявления',
     )
     description = models.CharField(
         blank=True,
@@ -36,6 +28,13 @@ class Ad(models.Model):
         max_length=1000,
         verbose_name='Описание товара',
         help_text='Введите описание товара',
+    )
+    image = models.ImageField(
+        upload_to='images/',
+        verbose_name='фото',
+        help_text='Разместите фото для объявления',
+        null=True,
+        blank=True,
     )
 
     class Meta:
@@ -46,14 +45,9 @@ class Ad(models.Model):
 
 class Comment(models.Model):
     text = models.CharField(
-        max_length=1000,
+        max_length=2000,
         verbose_name='Комментарий',
         help_text='Оставьте свой комментарий здесь',
-    )
-    created_ad = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='Время создания комментария',
-        help_text='Введите время создания комментария',
     )
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -68,6 +62,10 @@ class Comment(models.Model):
         related_name='comments',
         verbose_name='Объявления',
         help_text='Объявление, к которому относится комментарий',
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Время создания комментария',
     )
 
     class Meta:
