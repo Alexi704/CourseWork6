@@ -3,10 +3,10 @@ from django.contrib.auth.models import (
 )
 
 
-# менеджер для модели Юзера.
+# менеджер для модели пользователя.
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, phone, password=None):
-        """Создание и запись пользователя с использованием email и пароля"""
+        """Создание и запись пользователя в которую мы передаем обязательные поля"""
         if not email:
             raise ValueError('Users nust have an email address')
         user = self.model(
@@ -15,21 +15,22 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             phone=phone,
         )
-        user.role = 'user',
-        user.is_active = True,
-        user.set_password(password),
+        user.role = 'user'
+        user.is_active = True
+        user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, email, first_name, last_name, phone, password=None):
-        """Создание и запись суперпользователя"""
-        user = self.model(
-            email=self.normalize_email(email),
+    def create_superuser(self, email, first_name, last_name, phone, role, password=None):
+        """Создание суперпользователя"""
+        user = self.create_user(
+            email,
             first_name=first_name,
             last_name=last_name,
             phone=phone,
+            password=password,
         )
-        user.role = 'admin',
+        user.role = 'admin'
         user.save(using=self._db)
         return user
