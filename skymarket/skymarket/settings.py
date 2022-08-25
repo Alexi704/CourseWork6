@@ -18,7 +18,6 @@ load_dotenv(dotenv_path=env_path)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "S-Key:Tuman8_LRu2@ru-vpvsd0%a*6n1s4@w+wmt*$loc_p4zw^pw6z@e8e21iwii%m3&5"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'drf_spectacular',  # подключаем Swagger
     'djoser',  # подключаем Djoser
     'phonenumber_field',
+    'django_filters',
     "users",
     "ads",
     "redoc",
@@ -141,7 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "django_media")
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Include Email Backend
