@@ -3,7 +3,6 @@ from django.contrib.auth.models import (
 )
 
 
-# менеджер для модели пользователя.
 class UserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, phone, password=None):
         """Создание и запись пользователя в которую мы передаем обязательные поля"""

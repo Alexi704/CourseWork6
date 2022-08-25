@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
-from django.utils.translation import gettext_lazy as _
+# from django.utils.translation import gettext_lazy as _
 
 from users.managers import UserManager
 
@@ -10,12 +10,16 @@ class UserRoles:
     USER = 'user'
     ADMIN = 'admin'
     choices = (
-        (USER, _("Пользователь")),
-        (ADMIN, _("Администратор")),
+        (USER, USER),
+        (ADMIN, ADMIN),
     )
 
 
 class User(AbstractBaseUser):
+    objects = UserManager()
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone', 'role']
+
     first_name = models.CharField(
         max_length=64,
         verbose_name='Имя',
@@ -49,7 +53,7 @@ class User(AbstractBaseUser):
     image = models.ImageField(
         upload_to='users_avatars/',
         verbose_name='Аватарка',
-        help_text="Выбирите свой аватар",
+        help_text='Выбирите свой аватар',
         null=True,
         blank=True,
     )
@@ -68,8 +72,6 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_admin
 
-    objects = UserManager()
-
     @property
     def is_admin(self):
         return self.role == UserRoles.ADMIN
@@ -80,9 +82,6 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone', 'role']
 
     class Meta:
         verbose_name = 'Пользователь'
